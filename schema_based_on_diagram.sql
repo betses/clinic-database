@@ -4,6 +4,7 @@ CREATE TABLE "medical_histories"(
     "patient_id" INTEGER NOT NULL,
     "status" VARCHAR(255) NOT NULL,
     ADD PRIMARY KEY("id")
+    CONSTRAINT fk_patients FOREIGN KEY(patient_id) REFERENCES patients(id),
 );
 CREATE TABLE "patients"(
     "id" INTEGER NOT NULL,
@@ -37,6 +38,6 @@ CREATE TABLE "invoices"(
     "generated_at" TIMESTAMP,
     "paye_at" TIMESTAMP,
     "medical_history_id" INTEGER,
-    CONSTRAINT fk_invoice_items FOREIGN KEY(id) REFERENCES owners(id),
+    CONSTRAINT fk_invoice_items FOREIGN KEY(medical_history_id) REFERENCES medical_histories(id),
     ADD PRIMARY KEY("id")
 );
